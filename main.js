@@ -1,4 +1,3 @@
-
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('itinerary-form');
     const output = document.getElementById('itinerary-output');
@@ -11,10 +10,10 @@ document.addEventListener('DOMContentLoaded', () => {
         'paris': {
             itinerary: [ /* Itinerary data */ ],
             hotels: [
-                { name: 'Le Bristol Paris', type: 'Luxury', description: 'An icon of French elegance, located on the prestigious Rue du Faubourg Saint-Honoré.', url: 'https://www.lebristolparis.com' },
-                { name: 'Hôtel de Crillon', type: 'Luxury', description: 'A historic palace hotel on Place de la Concorde with a refined, timeless Parisian experience.', url: 'https://www.hotelcrillon.com' },
-                { name: 'Hotel Malte - Astotel', type: 'Mid-Range', description: 'A charming and stylish hotel in the heart of the 2nd arrondissement.', url: 'https://www.hotelmalte.com' },
-                { name: 'Generator Paris', type: 'Budget', description: 'A trendy hostel with a rooftop terrace offering stunning views of Montmartre.', url: 'https://www.generatorhostels.com/paris' },
+                { name: 'Le Bristol Paris', type: 'Luxury', description: 'An icon of French elegance, located on the prestigious Rue du Faubourg Saint-Honoré.', url: 'https://www.lebristolparis.com', rating: 4.8, priceRange: '$$$$' },
+                { name: 'Hôtel de Crillon', type: 'Luxury', description: 'A historic palace hotel on Place de la Concorde with a refined, timeless Parisian experience.', url: 'https://www.hotelcrillon.com', rating: 4.7, priceRange: '$$$$' },
+                { name: 'Hotel Malte - Astotel', type: 'Mid-Range', description: 'A charming and stylish hotel in the heart of the 2nd arrondissement.', url: 'https://www.hotelmalte.com', rating: 4.2, priceRange: '$$' },
+                { name: 'Generator Paris', type: 'Budget', description: 'A trendy hostel with a rooftop terrace offering stunning views of Montmartre.', url: 'https://www.generatorhostels.com/paris', rating: 3.9, priceRange: '$' },
             ],
             airlines: [
                 { name: 'Air France', class: 'Economy', price: '$$', description: 'National carrier of France.', url: 'https://www.airfrance.fr' },
@@ -25,10 +24,10 @@ document.addEventListener('DOMContentLoaded', () => {
         'tokyo': {
             itinerary: [ /* Itinerary data */ ],
             hotels: [
-                { name: 'Park Hyatt Tokyo', type: 'Luxury', description: 'Famous for its role in \"Lost in Translation,\" offering breathtaking views and impeccable service.', url: 'https://www.hyatt.com/en-US/hotel/japan/park-hyatt-tokyo/tyoph' },
-                { name: 'Aman Tokyo', type: 'Luxury', description: 'A serene and luxurious sanctuary with a stunning design, located near the Imperial Palace.', url: 'https://www.aman.com/hotels/aman-tokyo' },
-                { name: 'Shibuya Granbell Hotel', type: 'Mid-Range', description: 'A stylish and modern hotel in the heart of Shibuya, perfect for exploring the vibrant district.', url: 'https://www.granbellhotel.jp/shibuya/' },
-                { name: 'Book And Bed Tokyo', type: 'Budget', description: 'A unique hostel where you can sleep in a bookshelf, offering a cozy and memorable experience.', url: 'https://bookandbedtokyo.com/' },
+                { name: 'Park Hyatt Tokyo', type: 'Luxury', description: 'Famous for its role in \"Lost in Translation,\" offering breathtaking views and impeccable service.', url: 'https://www.hyatt.com/en-US/hotel/japan/park-hyatt-tokyo/tyoph', rating: 4.9, priceRange: '$$$$' },
+                { name: 'Aman Tokyo', type: 'Luxury', description: 'A serene and luxurious sanctuary with a stunning design, located near the Imperial Palace.', url: 'https://www.aman.com/hotels/aman-tokyo', rating: 4.8, priceRange: '$$$$$' },
+                { name: 'Shibuya Granbell Hotel', type: 'Mid-Range', description: 'A stylish and modern hotel in the heart of Shibuya, perfect for exploring the vibrant district.', url: 'https://www.granbellhotel.jp/shibuya/', rating: 4.1, priceRange: '$$$' },
+                { name: 'Book And Bed Tokyo', type: 'Budget', description: 'A unique hostel where you can sleep in a bookshelf, offering a cozy and memorable experience.', url: 'https://bookandbedtokyo.com/', rating: 3.7, priceRange: '$' },
             ],
             airlines: [
                 { name: 'Japan Airlines (JAL)', class: 'Economy', price: '$$', description: 'National carrier of Japan.', url: 'https://www.jal.com' },
@@ -41,9 +40,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const genericActivities = { /* Generic activities data */ };
 
     const genericHotels = [
-        { name: 'Luxury Hotel Option', type: 'Luxury', description: 'For a premium experience, consider a 5-star hotel in the city center with top-tier amenities like a spa, fine dining, and concierge services.', url: 'https://www.luxuryhotels.com' },
-        { name: 'Mid-Range Hotel Option', type: 'Mid-Range', description: 'Look for a 3 to 4-star hotel in a well-connected neighborhood. These often provide a great balance of comfort, value, and convenience.', url: 'https://www.midrangehotels.com' },
-        { name: 'Budget-Friendly Option', type: 'Budget', description: 'For those traveling on a tighter budget, consider modern hostels, boutique guesthouses, or well-reviewed budget hotels located just outside the main tourist areas.', url: 'https://www.budgethotels.com' },
+        { name: 'Luxury Hotel Option', type: 'Luxury', description: 'For a premium experience, consider a 5-star hotel in the city center with top-tier amenities like a spa, fine dining, and concierge services.', url: 'https://www.luxuryhotels.com', rating: 4.5, priceRange: '$$$$' },
+        { name: 'Mid-Range Hotel Option', type: 'Mid-Range', description: 'Look for a 3 to 4-star hotel in a well-connected neighborhood. These often provide a great balance of comfort, value, and convenience.', url: 'https://www.midrangehotels.com', rating: 3.8, priceRange: '$$$' },
+        { name: 'Budget-Friendly Option', type: 'Budget', description: 'For those traveling on a tighter budget, consider modern hostels, boutique guesthouses, or well-reviewed budget hotels located just outside the main tourist areas.', url: 'https://www.budgethotels.com', rating: 3.5, priceRange: '$$' },
     ];
 
     const genericAirlines = [
@@ -120,6 +119,8 @@ document.addEventListener('DOMContentLoaded', () => {
             hotelOutput.innerHTML = `<h2>Hotel Suggestions</h2><div class="hotel-list">${hotelList.slice(0, 3).map(hotel => `
                 <div class="hotel-card">
                     <h3><a href="${hotel.url}" target="_blank"><b>${hotel.name}</b></a> (${hotel.type})</h3>
+                    <p>Rating: ${hotel.rating} / 5</p>
+                    <p>Price Range: ${hotel.priceRange}</p>
                     <p>${hotel.description}</p>
                 </div>
             `).join('')}</div>`;
