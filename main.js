@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('itinerary-form');
     const output = document.getElementById('itinerary-output');
@@ -5,9 +6,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const airlineOutput = document.getElementById('airline-suggestion');
     const loading = document.getElementById('loading');
     const themeSwitch = document.getElementById('checkbox');
-    const hotelDisplayCountSelect = document.getElementById('hotel-display-count'); // Get reference to the select element
-
-    let currentHotelList = []; // Declare currentHotelList globally
 
     const destinations = {
         'paris': {
@@ -65,34 +63,11 @@ document.addEventListener('DOMContentLoaded', () => {
         return newArray;
     };
 
-    // Function to render hotels based on count
-    const renderHotels = (count) => {
-        let hotelsToDisplay = [];
-        if (count === 'all') {
-            hotelsToDisplay = currentHotelList;
-        } else {
-            hotelsToDisplay = currentHotelList.slice(0, parseInt(count));
-        }
-
-        // Only update the hotel list portion, keep selection-controls in index.html
-        document.querySelector('#hotel-suggestion .hotel-list-container').innerHTML = `
-            <h2>Hotel Suggestions</h2>
-            <div class="hotel-list">
-                ${hotelsToDisplay.map(hotel => `
-                    <div class="hotel-card">
-                        <h3><b>${hotel.name}</b> (${hotel.type})</h3>
-                        <p>${hotel.description}</p>
-                    </div>
-                `).join('')}
-            </div>`;
-    };
-
     form.addEventListener('submit', (event) => {
         event.preventDefault();
         output.innerHTML = '';
-        // hotelOutput.innerHTML = ''; // This will be handled by renderHotels
+        hotelOutput.innerHTML = '';
         airlineOutput.innerHTML = ''; // Clear airline output
-        document.querySelector('#hotel-suggestion .hotel-list-container').innerHTML = `<h2>Hotel Suggestions</h2>`; // Clear hotels for loading state
         loading.style.display = 'block';
 
         setTimeout(() => {
@@ -116,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             let plan = [];
             const destinationData = destinations[destinationKey];
-            let hotelCandidates = genericHotels; // Renamed to avoid confusion with currentHotelList
+            let hotelList = genericHotels;
             let airlineList = genericAirlines; // Initialize airlineList
 
             if (destinationData) {
@@ -124,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 for (let i = 0; i < duration; i++) {
                     plan.push(specificItinerary[i % specificItinerary.length]);
                 }
-                hotelCandidates = destinationData.hotels; // Store full list here
+                hotelList = destinationData.hotels;
                 if (destinationData.airlines) {
                     airlineList = destinationData.airlines; // Use specific airlines if available
                 }
@@ -141,13 +116,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     });
                 }
             }
-            currentHotelList = hotelCandidates; // Store the full list
-
-            // Ensure the select element has the correct initial value
-            hotelDisplayCountSelect.value = '3'; // Reset to 3 for each new search
-
-            // Initial render of hotels (default to 3)
-            renderHotels(hotelDisplayCountSelect.value);
+            
+            hotelOutput.innerHTML = `<h2>Hotel Suggestions</h2><div class="hotel-list">${hotelList.slice(0, 3).map(hotel => `
+                <div class="hotel-card">
+                    <h3><b>${hotel.name}</b> (${hotel.type})</h3>
+                    <p>${hotel.description}</p>
+                </div>
+            `).join('')}</div>`;
 
             airlineOutput.innerHTML = `<h2>Airline Suggestions</h2><div class="airline-list">${airlineList.slice(0, 3).map(airline => `
                 <div class="hotel-card"> <!-- Reusing hotel-card style for consistency -->
@@ -175,11 +150,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
             loading.style.display = 'none';
         }, 1000);
-    });
-
-    // Event listener for hotel display count dropdown
-    hotelDisplayCountSelect.addEventListener('change', (event) => {
-        renderHotels(event.target.value);
     });
 
     // Populate itinerary data for destinations (to keep the code clean)
