@@ -1,132 +1,189 @@
 
 body {
     font-family: 'Poppins', sans-serif;
-    background-color: #f4f7f6;
+    background-color: #f8f9fa;
     color: #333;
     margin: 0;
-    padding: 20px;
+    background-image: url('https://www.transparenttextures.com/patterns/subtle-noise.png');
 }
 
-header {
-    text-align: center;
-    margin-bottom: 30px;
+.main-header {
+    background: linear-gradient(45deg, #0071c2, #00c2a8);
+    color: white;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-h1 {
-    font-size: 3em;
-    color: #2c3e50;
+.logo {
+    font-size: 1.8em;
     font-weight: 700;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
 }
 
-main {
+.hero {
+    background: url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+    color: white;
+    text-align: center;
+    padding: 120px 20px;
+    position: relative;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+}
+
+.hero h1 {
+    font-size: 3.5em;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.hero p {
+    font-size: 1.4em;
+    font-weight: 300;
+}
+
+.search-form-container {
+    transform: translateY(-50%);
+    margin-bottom: -70px;
+}
+
+.search-form-container form {
+    display: flex;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    width: 100%;
     max-width: 900px;
     margin: 0 auto;
+    align-items: flex-end;
 }
 
-#itinerary-form {
-    display: flex;
-    gap: 15px;
-    margin-bottom: 30px;
-    align-items: center;
-}
-
-#itinerary-form input[type="text"],
-#itinerary-form input[type="date"] {
+.form-group {
+    padding: 25px;
     flex-grow: 1;
-    padding: 12px 15px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 1em;
-    box-shadow: inset 0 1px 3px rgba(0,0,0,0.06);
+    border-right: 1px solid #e0e0e0;
 }
 
-#itinerary-form button {
-    padding: 12px 25px;
-    background: linear-gradient(45deg, #3498db, #2980b9);
+.form-group:last-of-type {
+    border-right: none;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: #555;
+    font-size: 0.9em;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1em;
+}
+
+.destination-group {
+    flex-basis: 30%;
+}
+
+.date-group {
+    flex-basis: 40%;
+}
+
+.pax-group {
+    flex-basis: 15%;
+}
+
+.date-inputs {
+    display: flex;
+    gap: 10px;
+}
+
+.search-form-container button {
+    background: linear-gradient(45deg, #00c2a8, #0071c2);
     color: white;
     border: none;
-    border-radius: 8px;
-    font-size: 1em;
-    font-weight: 600;
+    padding: 25px 35px;
     cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+    font-size: 1.2em;
+    font-weight: 600;
+    align-self: stretch;
+    transition: background 0.3s ease;
 }
 
-#itinerary-form button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 7px 14px rgba(50, 50, 93, 0.1), 0 3px 6px rgba(0, 0, 0, 0.08);
+.search-form-container button:hover {
+    background: linear-gradient(45deg, #00a890, #005a9e);
 }
 
-.loading-spinner {
-    display: none;
-    border: 5px solid #f3f3f3; 
-    border-top: 5px solid #3498db; 
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    animation: spin 1s linear infinite;
-    margin: 30px auto;
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+.results-container {
+    max-width: 1100px;
+    margin: 80px auto 40px;
+    padding: 0 20px;
 }
 
 #hotel-suggestion h2, #itinerary-output h2 {
-    font-size: 2em;
-    color: #2c3e50;
-    margin-bottom: 20px;
-    border-bottom: 2px solid #3498db;
-    padding-bottom: 10px;
+    font-size: 2.2em;
+    color: #1a2b48;
+    margin-bottom: 25px;
+    text-align: center;
 }
 
 .hotel-list {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 20px;
-    margin-bottom: 30px;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+    margin-bottom: 50px;
 }
 
-.hotel-card {
+.hotel-card, .itinerary-day-card {
     background: #fff;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    border: none;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.hotel-card:hover {
+.hotel-card:hover, .itinerary-day-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.12);
 }
 
 .hotel-card h3 {
-    font-size: 1.4em;
+    font-size: 1.5em;
     margin-top: 0;
-    color: #3498db;
+    color: #0071c2;
 }
 
 .hotel-card p {
-    font-size: 0.95em;
-    line-height: 1.6;
-}
-
-.itinerary-day-card {
-    background: #fff;
-    border-radius: 10px;
-    margin-bottom: 20px;
-    padding: 25px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    font-size: 1em;
+    line-height: 1.7;
 }
 
 .itinerary-day-card h3 {
-    font-size: 1.6em;
-    color: #2980b9;
+    font-size: 1.8em;
+    color: #1a2b48;
     margin-top: 0;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #00c2a8;
+    padding-bottom: 10px;
 }
 
 .itinerary-day-card ul {
@@ -135,11 +192,28 @@ main {
 }
 
 .itinerary-day-card li {
-    font-size: 1em;
-    margin-bottom: 10px;
-    line-height: 1.5;
+    font-size: 1.1em;
+    margin-bottom: 12px;
+    line-height: 1.6;
 }
 
 .itinerary-day-card b {
-    color: #34495e;
+    color: #0071c2;
+    font-weight: 600;
+}
+
+.loading-spinner {
+    border: 6px solid #f3f3f3;
+    border-top: 6px solid #0071c2;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    margin: 50px auto;
+    display: none;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }

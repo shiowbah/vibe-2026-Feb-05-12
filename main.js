@@ -56,20 +56,24 @@ document.addEventListener('DOMContentLoaded', () => {
             const destinationKey = destinationInput.toLowerCase();
             const startDate = new Date(document.getElementById('start-date').value);
             const endDate = new Date(document.getElementById('end-date').value);
+            const pax = document.getElementById('pax').value;
 
-            if (endDate < startDate) {
-                alert('End date cannot be before start date.');
+
+            if (!destinationInput || !startDate || !endDate || endDate < startDate) {
+                alert('Please fill out all fields and ensure the end date is not before the start date.');
                 loading.style.display = 'none';
                 return;
             }
 
+            console.log(`Generating itinerary for ${pax} person(s).`); // Log the number of pax
+
             const diffTime = Math.abs(endDate - startDate);
-            const duration = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1; 
+            const duration = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1;
 
             let plan = [];
             const destinationData = destinations[destinationKey];
-
             let hotelList = genericHotels;
+
             if (destinationData) {
                 const specificItinerary = destinationData.itinerary;
                 for (let i = 0; i < duration; i++) {
