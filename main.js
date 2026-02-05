@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('itinerary-form');
     const output = document.getElementById('itinerary-output');
@@ -230,3 +231,50 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 });
+const feedbackForm = document.getElementById('feedback-form');
+const feedbackStatus = document.getElementById('feedback-status');
+
+if (feedbackForm) {
+    feedbackForm.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        feedbackStatus.style.display = 'block';
+        feedbackStatus.style.color = 'var(--text-color)';
+        feedbackStatus.textContent = 'Sending your feedback...';
+
+        const formData = new new FormData(feedbackForm);
+
+        try {
+            const response = await fetch(feedbackForm.action, {
+                method: feedbackForm.method,
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+
+            if (response.ok) {
+                feedbackStatus.style.color = 'green';
+                feedbackStatus.textContent = 'Thank you for your feedback!';
+                feedbackForm.reset(); // Clear the form
+            } else {
+                const data = await response.json();
+                if (data.errors) {
+                    feedbackStatus.style.color = 'red';
+                    feedbackStatus.textContent = data.errors.map(error => error.message).join(', ');
+                } else {
+                    feedbackStatus.style.color = 'red';
+                    feedbackStatus.textContent = 'Oops! There was a problem submitting your form.';
+                }
+            }
+        } catch (error) {
+            feedbackStatus.style.color = 'red';
+            feedbackStatus.textContent = 'Oops! There was a network error.';
+            console.error('Feedback form submission error:', error);
+        } finally {
+            // Optionally hide status after a few seconds
+            setTimeout(() => {
+                feedbackStatus.style.display = 'none';
+            }, 5000);
+        }
+    });
+}

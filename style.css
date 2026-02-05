@@ -258,6 +258,72 @@ body {
     transition: color 0.3s;
 }
 
+.form-section {
+    max-width: 800px;
+    margin: 80px auto 40px;
+    padding: 40px;
+    background-color: var(--form-bg);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    transition: background-color 0.3s;
+}
+
+.form-section h2 {
+    font-size: 2.2em;
+    color: var(--heading-color);
+    margin-bottom: 30px;
+    text-align: center;
+    transition: color 0.3s;
+}
+
+.form-section .form-group {
+    margin-bottom: 20px;
+    padding: 0; /* Override previous padding */
+    border-right: none; /* Override previous border */
+}
+
+.form-section label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--form-text-color);
+}
+
+.form-section input[type="email"],
+.form-section textarea {
+    width: calc(100% - 22px); /* Account for padding and border */
+    padding: 10px;
+    border: 1px solid var(--form-border-color);
+    border-radius: 6px;
+    font-size: 1em;
+    background-color: var(--form-bg);
+    color: var(--text-color);
+    transition: border-color 0.3s, background-color 0.3s, color 0.3s;
+}
+
+.form-section textarea {
+    resize: vertical;
+}
+
+.form-section button[type="submit"] {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    margin-top: 20px;
+    background: var(--button-bg);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.2em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.form-section button[type="submit"]:hover {
+    background: var(--button-hover-bg);
+}
+
 .loading-spinner {
     border: 6px solid #f3f3f3;
     border-top: 6px solid var(--primary-color);
