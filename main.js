@@ -1,4 +1,3 @@
-
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('itinerary-form');
     const output = document.getElementById('itinerary-output');
@@ -11,29 +10,29 @@ document.addEventListener('DOMContentLoaded', () => {
         'paris': {
             itinerary: [ /* Itinerary data */ ],
             hotels: [
-                { name: 'Le Bristol Paris', type: 'Luxury', description: 'An icon of French elegance, located on the prestigious Rue du Faubourg Saint-Honoré.' },
-                { name: 'Hôtel de Crillon', type: 'Luxury', description: 'A historic palace hotel on Place de la Concorde with a refined, timeless Parisian experience.' },
-                { name: 'Hotel Malte - Astotel', type: 'Mid-Range', description: 'A charming and stylish hotel in the heart of the 2nd arrondissement.' },
-                { name: 'Generator Paris', type: 'Budget', description: 'A trendy hostel with a rooftop terrace offering stunning views of Montmartre.' },
+                { name: 'Le Bristol Paris', type: 'Luxury', description: 'An icon of French elegance, located on the prestigious Rue du Faubourg Saint-Honoré.', url: 'https://www.google.com/search?q=Le+Bristol+Paris' },
+                { name: 'Hôtel de Crillon', type: 'Luxury', description: 'A historic palace hotel on Place de la Concorde with a refined, timeless Parisian experience.', url: 'https://www.google.com/search?q=Hôtel+de+Crillon' },
+                { name: 'Hotel Malte - Astotel', type: 'Mid-Range', description: 'A charming and stylish hotel in the heart of the 2nd arrondissement.', url: 'https://www.google.com/search?q=Hotel+Malte+-+Astotel' },
+                { name: 'Generator Paris', type: 'Budget', description: 'A trendy hostel with a rooftop terrace offering stunning views of Montmartre.', url: 'https://www.google.com/search?q=Generator+Paris' },
             ],
             airlines: [
-                { name: 'Air France', class: 'Economy', price: '$$', description: 'National carrier of France.' },
-                { name: 'Delta Airlines', class: 'Economy', price: '$$', description: 'Major US airline with direct flights.' },
-                { name: 'British Airways', class: 'Business', price: '$$$', description: 'Premium service to Paris.' },
+                { name: 'Air France', class: 'Economy', price: '$$', description: 'National carrier of France.', url: 'https://www.google.com/search?q=Air+France' },
+                { name: 'Delta Airlines', class: 'Economy', price: '$$', description: 'Major US airline with direct flights.', url: 'https://www.google.com/search?q=Delta+Airlines' },
+                { name: 'British Airways', class: 'Business', price: '$$$', description: 'Premium service to Paris.', url: 'https://www.google.com/search?q=British+Airways' },
             ]
         },
         'tokyo': {
             itinerary: [ /* Itinerary data */ ],
             hotels: [
-                { name: 'Park Hyatt Tokyo', type: 'Luxury', description: 'Famous for its role in \"Lost in Translation,\" offering breathtaking views and impeccable service.' },
-                { name: 'Aman Tokyo', type: 'Luxury', description: 'A serene and luxurious sanctuary with a stunning design, located near the Imperial Palace.' },
-                { name: 'Shibuya Granbell Hotel', type: 'Mid-Range', description: 'A stylish and modern hotel in the heart of Shibuya, perfect for exploring the vibrant district.' },
-                { name: 'Book And Bed Tokyo', type: 'Budget', description: 'A unique hostel where you can sleep in a bookshelf, offering a cozy and memorable experience.' },
+                { name: 'Park Hyatt Tokyo', type: 'Luxury', description: 'Famous for its role in \"Lost in Translation,\" offering breathtaking views and impeccable service.', url: 'https://www.google.com/search?q=Park+Hyatt+Tokyo' },
+                { name: 'Aman Tokyo', type: 'Luxury', description: 'A serene and luxurious sanctuary with a stunning design, located near the Imperial Palace.', url: 'https://www.google.com/search?q=Aman+Tokyo' },
+                { name: 'Shibuya Granbell Hotel', type: 'Mid-Range', description: 'A stylish and modern hotel in the heart of Shibuya, perfect for exploring the vibrant district.', url: 'https://www.google.com/search?q=Shibuya+Granbell+Hotel' },
+                { name: 'Book And Bed Tokyo', type: 'Budget', description: 'A unique hostel where you can sleep in a bookshelf, offering a cozy and memorable experience.', url: 'https://www.google.com/search?q=Book+And+Bed+Tokyo' },
             ],
             airlines: [
-                { name: 'Japan Airlines (JAL)', class: 'Economy', price: '$$', description: 'National carrier of Japan.' },
-                { name: 'All Nippon Airways (ANA)', class: 'Economy', price: '$$', description: 'Another major Japanese airline.' },
-                { name: 'United Airlines', class: 'Economy', price: '$$', description: 'Major US airline with direct flights.' },
+                { name: 'Japan Airlines (JAL)', class: 'Economy', price: '$$', description: 'National carrier of Japan.', url: 'https://www.google.com/search?q=Japan+Airlines' },
+                { name: 'All Nippon Airways (ANA)', class: 'Economy', price: '$$', description: 'Another major Japanese airline.', url: 'https://www.google.com/search?q=All+Nippon+Airways' },
+                { name: 'United Airlines', class: 'Economy', price: '$$', description: 'Major US airline with direct flights.', url: 'https://www.google.com/search?q=United+Airlines' },
             ]
         }
     };
@@ -41,15 +40,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const genericActivities = { /* Generic activities data */ };
 
     const genericHotels = [
-        { name: 'Luxury Hotel Option', type: 'Luxury', description: 'For a premium experience, consider a 5-star hotel in the city center with top-tier amenities like a spa, fine dining, and concierge services.' },
-        { name: 'Mid-Range Hotel Option', type: 'Mid-Range', description: 'Look for a 3 to 4-star hotel in a well-connected neighborhood. These often provide a great balance of comfort, value, and convenience.' },
-        { name: 'Budget-Friendly Option', type: 'Budget', description: 'For those traveling on a tighter budget, consider modern hostels, boutique guesthouses, or well-reviewed budget hotels located just outside the main tourist areas.' },
+        { name: 'Luxury Hotel Option', type: 'Luxury', description: 'For a premium experience, consider a 5-star hotel in the city center with top-tier amenities like a spa, fine dining, and concierge services.', url: 'https://www.google.com/search?q=Luxury+Hotel+Option' },
+        { name: 'Mid-Range Hotel Option', type: 'Mid-Range', description: 'Look for a 3 to 4-star hotel in a well-connected neighborhood. These often provide a great balance of comfort, value, and convenience.', url: 'https://www.google.com/search?q=Mid-Range+Hotel+Option' },
+        { name: 'Budget-Friendly Option', type: 'Budget', description: 'For those traveling on a tighter budget, consider modern hostels, boutique guesthouses, or well-reviewed budget hotels located just outside the main tourist areas.', url: 'https://www.google.com/search?q=Budget-Friendly+Hotel+Option' },
     ];
 
     const genericAirlines = [
-        { name: 'Global Airways', class: 'Economy', price: '$$', description: 'Offers competitive prices with a wide network.' },
-        { name: 'SkyLink Express', class: 'Business', price: '$$$', description: 'Premium services for business travelers.' },
-        { name: 'Budget Fly', class: 'Economy', price: '$', description: 'No-frills, affordable flights.' },
+        { name: 'Global Airways', class: 'Economy', price: '$$', description: 'Offers competitive prices with a wide network.', url: 'https://www.google.com/search?q=Global+Airways' },
+        { name: 'SkyLink Express', class: 'Business', price: '$$$', description: 'Premium services for business travelers.', url: 'https://www.google.com/search?q=SkyLink+Express' },
+        { name: 'Budget Fly', class: 'Economy', price: '$', description: 'No-frills, affordable flights.', url: 'https://www.google.com/search?q=Budget+Fly' },
     ];
 
     const shuffle = (array) => {
@@ -119,14 +118,14 @@ document.addEventListener('DOMContentLoaded', () => {
             
             hotelOutput.innerHTML = `<h2>Hotel Suggestions</h2><div class="hotel-list">${hotelList.slice(0, 3).map(hotel => `
                 <div class="hotel-card">
-                    <h3><b>${hotel.name}</b> (${hotel.type})</h3>
+                    <h3><a href="${hotel.url}" target="_blank"><b>${hotel.name}</b></a> (${hotel.type})</h3>
                     <p>${hotel.description}</p>
                 </div>
             `).join('')}</div>`;
 
             airlineOutput.innerHTML = `<h2>Airline Suggestions</h2><div class="airline-list">${airlineList.slice(0, 3).map(airline => `
                 <div class="hotel-card"> <!-- Reusing hotel-card style for consistency -->
-                    <h3><b>${airline.name}</b> (${airline.class})</h3>
+                    <h3><a href="${airline.url}" target="_blank"><b>${airline.name}</b></a> (${airline.class})</h3>
                     <p>Price: ${airline.price}</p>
                     <p>${airline.description}</p>
                 </div>
