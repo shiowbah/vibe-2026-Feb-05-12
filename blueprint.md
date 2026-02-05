@@ -3,7 +3,7 @@
 
 ## 1. Overview
 
-This document outlines the development of a web-based itinerary planner. The application will allow users to input a destination and a date range to generate a travel itinerary, complete with hotel suggestions.
+This document outlines the development of a web-based itinerary planner. The application will allow users to input a destination and a date range to generate a travel itinerary, complete with a categorized list of hotel suggestions.
 
 ## 2. Implemented Features
 
@@ -22,15 +22,16 @@ This document outlines the development of a web-based itinerary planner. The app
 *   **Date Range Input:**
     *   Users can select a start and end date for their trip.
     *   The itinerary is generated for the specified date range.
+*   **Hotel Suggestions:**
+    *   Displays a single, random hotel suggestion for pre-defined destinations.
 
-## 3. Current Task: Add Hotel Suggestions
+## 3. Current Task: Provide a List of Hotel Suggestions
 
 ### Plan:
 
-1.  **Update `blueprint.md`:** Document the plan to add hotel suggestions to the itinerary.
-2.  **Update `main.js`:**
-    *   Create a new data structure to store hotel recommendations for pre-defined destinations.
-    *   For other destinations, provide a generic hotel suggestion.
-    *   Update the itinerary generation to include a hotel suggestion in the output.
-3.  **Update `index.html`:**
-    *   Add a new section to display the hotel suggestion prominently above the daily itinerary.
+1.  **Update `blueprint.md`:** Document the plan to display a list of categorized hotel suggestions for all destinations.
+2.  **Update `style.css`:** Add styling to format the list of hotel suggestions neatly.
+3.  **Update `main.js`:**
+    *   For pre-defined destinations, modify the logic to display the full list of available hotel options instead of just one.
+    *   For generic destinations, create a default list of hotel *types* (e.g., Luxury, Mid-Range, Budget) with general descriptions.
+    *   Update the rendering logic to display these lists in a clear, card-based format.

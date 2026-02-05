@@ -5,31 +5,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const hotelOutput = document.getElementById('hotel-suggestion');
     const loading = document.getElementById('loading');
 
-    // Expanded pre-defined itineraries and hotel suggestions
     const destinations = {
         'paris': {
-            itinerary: [
-                { morning: 'Visit the Louvre Museum', afternoon: 'Climb the Eiffel Tower', evening: 'Seine River Cruise' },
-                { morning: 'Explore Montmartre & Sacré-Cœur', afternoon: 'Walk along Champs-Élysées to the Arc de Triomphe', evening: 'Enjoy a show at Moulin Rouge' },
-                { morning: 'Day trip to the Palace of Versailles', afternoon: 'Explore the Gardens of Versailles', evening: 'Dinner in the Le Marais district' },
-                { morning: 'Visit Musée d\'Orsay', afternoon: 'Stroll through Luxembourg Gardens', evening: 'Explore the Latin Quarter' },
-                { morning: 'Discover Sainte-Chapelle & Conciergerie', afternoon: 'Shop at Galeries Lafayette', evening: 'Attend an opera at Palais Garnier' },
-            ],
+            itinerary: [ /* Itinerary data */ ],
             hotels: [
-                { name: 'Le Bristol Paris', type: 'Luxury', description: 'An icon of French elegance and art de vivre, located on the prestigious Rue du Faubourg Saint-Honoré.' },
-                { name: 'Hôtel de Crillon', type: 'Luxury', description: 'A historic palace hotel on Place de la Concorde, offering a refined and timeless Parisian experience.' },
-                { name: 'Hotel Malte - Astotel', type: 'Mid-Range', description: 'A charming and stylish hotel in the heart of the 2nd arrondissement, known for its excellent service.' },
-                { name: 'Generator Paris', type: 'Budget', description: 'A trendy and modern hostel with a rooftop terrace offering stunning views of Montmartre.' },
+                { name: 'Le Bristol Paris', type: 'Luxury', description: 'An icon of French elegance, located on the prestigious Rue du Faubourg Saint-Honoré.' },
+                { name: 'Hôtel de Crillon', type: 'Luxury', description: 'A historic palace hotel on Place de la Concorde with a refined, timeless Parisian experience.' },
+                { name: 'Hotel Malte - Astotel', type: 'Mid-Range', description: 'A charming and stylish hotel in the heart of the 2nd arrondissement.' },
+                { name: 'Generator Paris', type: 'Budget', description: 'A trendy hostel with a rooftop terrace offering stunning views of Montmartre.' },
             ]
         },
         'tokyo': {
-            itinerary: [
-                { morning: 'Visit Senso-ji Temple in Asakusa', afternoon: 'Explore Akihabara Electric Town', evening: 'Cross the Shibuya Scramble Crossing' },
-                { morning: 'Visit the Meiji Shrine & Yoyogi Park', afternoon: 'Explore Harajuku and Takeshita Street', evening: 'Dinner and drinks in Shinjuku Golden Gai' },
-                { morning: 'Explore the Tsukiji Outer Market', afternoon: 'Imperial Palace East Garden', evening: 'Experience teamLab Borderless digital art museum' },
-                { morning: 'Day trip to Hakone for views of Mt. Fuji', afternoon: 'Ride the Hakone Ropeway', evening: 'Relax in an onsen (hot spring)' },
-                { morning: 'Visit the Ghibli Museum (requires advance tickets)', afternoon: 'Stroll through Inokashira Park', evening: 'Dinner in Kichijoji' },
-            ],
+            itinerary: [ /* Itinerary data */ ],
             hotels: [
                 { name: 'Park Hyatt Tokyo', type: 'Luxury', description: 'Famous for its role in \"Lost in Translation,\" offering breathtaking views and impeccable service.' },
                 { name: 'Aman Tokyo', type: 'Luxury', description: 'A serene and luxurious sanctuary with a stunning design, located near the Imperial Palace.' },
@@ -39,28 +26,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // Generic activity pools
-    const genericActivities = {
-        morning: [
-            'Visit a famous landmark or monument',
-            'Explore the historic old town center',
-            'Take a guided walking tour',
-            'Browse a bustling local market',
-            'Hike a scenic trail in a nearby park',
-        ],
-        afternoon: [
-            'Have lunch at a traditional restaurant',
-            'Go shopping in a well-known district',
-            'Visit a contemporary art gallery',
-            'Take a river or harbor boat tour',
-        ],
-        evening: [
-            'Enjoy fine dining at a renowned restaurant',
-            'Watch a show at a historic theater',
-            'Experience the nightlife in the city center',
-            'Go for a sunset walk along a scenic viewpoint',
-        ]
-    };
+    const genericActivities = { /* Generic activities data */ };
+
+    const genericHotels = [
+        { name: 'Luxury Hotel Option', type: 'Luxury', description: 'For a premium experience, consider a 5-star hotel in the city center with top-tier amenities like a spa, fine dining, and concierge services.' },
+        { name: 'Mid-Range Hotel Option', type: 'Mid-Range', description: 'Look for a 3 to 4-star hotel in a well-connected neighborhood. These often provide a great balance of comfort, value, and convenience.' },
+        { name: 'Budget-Friendly Option', type: 'Budget', description: 'For those traveling on a tighter budget, consider modern hostels, boutique guesthouses, or well-reviewed budget hotels located just outside the main tourist areas.' },
+    ];
 
     const shuffle = (array) => {
         let currentIndex = array.length, randomIndex;
@@ -97,14 +69,14 @@ document.addEventListener('DOMContentLoaded', () => {
             let plan = [];
             const destinationData = destinations[destinationKey];
 
+            let hotelList = genericHotels;
             if (destinationData) {
                 const specificItinerary = destinationData.itinerary;
                 for (let i = 0; i < duration; i++) {
                     plan.push(specificItinerary[i % specificItinerary.length]);
                 }
-                const hotel = destinationData.hotels[Math.floor(Math.random() * destinationData.hotels.length)];
-                hotelOutput.innerHTML = `<h2>Hotel Suggestion</h2><div class="hotel-card"><h3>${hotel.name} (${hotel.type})</h3><p>${hotel.description}</p></div>`;
-            } else {
+                hotelList = destinationData.hotels;
+            } else { 
                 const shuffledMornings = shuffle(genericActivities.morning);
                 const shuffledAfternoons = shuffle(genericActivities.afternoon);
                 const shuffledEvenings = shuffle(genericActivities.evening);
@@ -116,10 +88,16 @@ document.addEventListener('DOMContentLoaded', () => {
                         evening: shuffledEvenings[i % shuffledEvenings.length],
                     });
                 }
-                hotelOutput.innerHTML = `<h2>Hotel Suggestion</h2><div class="hotel-card"><p>For ${destinationInput}, we recommend searching on popular booking websites to find a hotel that fits your budget and preferences.</p></div>`;
             }
             
-            output.innerHTML = plan.map((dayPlan, i) => {
+            hotelOutput.innerHTML = `<h2>Hotel Suggestions</h2><div class="hotel-list">${hotelList.map(hotel => `
+                <div class="hotel-card">
+                    <h3>${hotel.name} (${hotel.type})</h3>
+                    <p>${hotel.description}</p>
+                </div>
+            `).join('')}</div>`;
+
+            output.innerHTML = `<h2>Daily Itinerary</h2>${plan.map((dayPlan, i) => {
                 const currentDate = new Date(startDate);
                 currentDate.setDate(startDate.getDate() + i);
                 const dateString = currentDate.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
@@ -133,9 +111,47 @@ document.addEventListener('DOMContentLoaded', () => {
                         <li><b>Evening:</b> ${dayPlan.evening}</li>
                     </ul>
                 </div>
-            `}).join('');
+            `}).join('')}`;
 
             loading.style.display = 'none';
         }, 1000);
     });
+
+    // Populate itinerary data for destinations (to keep the code clean)
+    destinations.paris.itinerary = [
+        { morning: 'Visit the Louvre Museum', afternoon: 'Climb the Eiffel Tower', evening: 'Seine River Cruise' },
+        { morning: 'Explore Montmartre & Sacré-Cœur', afternoon: 'Walk along Champs-Élysées to the Arc de Triomphe', evening: 'Enjoy a show at Moulin Rouge' },
+        { morning: 'Day trip to the Palace of Versailles', afternoon: 'Explore the Gardens of Versailles', evening: 'Dinner in the Le Marais district' },
+        { morning: 'Visit Musée d\'Orsay', afternoon: 'Stroll through Luxembourg Gardens', evening: 'Explore the Latin Quarter' },
+        { morning: 'Discover Sainte-Chapelle & Conciergerie', afternoon: 'Shop at Galeries Lafayette', evening: 'Attend an opera at Palais Garnier' },
+    ];
+    destinations.tokyo.itinerary = [
+        { morning: 'Visit Senso-ji Temple in Asakusa', afternoon: 'Explore Akihabara Electric Town', evening: 'Cross the Shibuya Scramble Crossing' },
+        { morning: 'Visit the Meiji Shrine & Yoyogi Park', afternoon: 'Explore Harajuku and Takeshita Street', evening: 'Dinner and drinks in Shinjuku Golden Gai' },
+        { morning: 'Explore the Tsukiji Outer Market', afternoon: 'Imperial Palace East Garden', evening: 'Experience teamLab Borderless digital art museum' },
+        { morning: 'Day trip to Hakone for views of Mt. Fuji', afternoon: 'Ride the Hakone Ropeway', evening: 'Relax in an onsen (hot spring)' },
+        { morning: 'Visit the Ghibli Museum (requires advance tickets)', afternoon: 'Stroll through Inokashira Park', evening: 'Dinner in Kichijoji' },
+    ];
+    const genericMorning = [
+        'Visit a famous landmark or monument',
+        'Explore the historic old town center',
+        'Take a guided walking tour',
+        'Browse a bustling local market',
+        'Hike a scenic trail in a nearby park',
+    ];
+    const genericAfternoon = [
+        'Have lunch at a traditional restaurant',
+        'Go shopping in a well-known district',
+        'Visit a contemporary art gallery',
+        'Take a river or harbor boat tour',
+    ];
+    const genericEvening = [
+        'Enjoy fine dining at a renowned restaurant',
+        'Watch a show at a historic theater',
+        'Experience the nightlife in the city center',
+        'Go for a sunset walk along a scenic viewpoint',
+    ];
+    genericActivities.morning = genericMorning;
+    genericActivities.afternoon = genericAfternoon;
+    genericActivities.evening = genericEvening;
 });
