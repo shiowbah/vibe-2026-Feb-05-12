@@ -2,49 +2,40 @@
 
 ## Overview
 
-This project is an interactive and user-friendly Itinerary Planner web application. It allows users to generate a personalized travel itinerary and receive hotel suggestions based on their destination, travel dates, and the number of travelers. The application is designed with a modern and clean user interface, leveraging modern web standards for a seamless experience.
+This project is a web-based Itinerary Planner that allows users to generate travel itineraries and get hotel suggestions. The application is designed to be user-friendly, visually appealing, and responsive, providing a seamless experience on both mobile and web platforms.
 
-## Implemented Features
+## Design and Features
 
-### Version 1.0: Initial Itinerary Planner
+### Visual Design
 
-- **Destination Input:** Users can enter their desired travel destination.
-- **Date Selection:** Users can select a start and end date for their trip.
-- **Dynamic Itinerary Generation:** The application generates a day-by-day itinerary with suggested activities for the morning, afternoon, and evening.
-- **Hotel Suggestions:** The application provides a list of suggested hotels with their type (e.g., Luxury, Mid-Range, Budget) and a brief description.
-- **Pre-defined Data:** The application includes pre-defined itinerary and hotel data for popular destinations like Paris and Tokyo.
-- **Generic Fallback:** For destinations not in the pre-defined list, a generic itinerary and hotel suggestions are provided.
-- **Styling:** The application is styled with CSS for a clean and modern look, including a hero section, a search form, and result containers.
+-   **Aesthetics:** The application incorporates modern design principles, with a focus on clean spacing, visually balanced layouts, and polished styles.
+-   **Color Palette:** A vibrant and energetic color palette is used to create a visually appealing user interface.
+-   **Typography:** Expressive and relevant typography is used to emphasize key information and enhance readability.
+-   **Iconography:** Icons are used to enhance user understanding and improve navigation.
+-   **Interactivity:** Interactive elements such as buttons and forms have a modern look and feel, with subtle animations and shadow effects to create a sense of depth.
 
-### Version 1.1: Added Number of Pax
+### Features
 
-- **Number of Pax Input:** The search form now includes a field for users to specify the number of travelers (pax).
-- **UI Update:** The layout of the search form was updated to accommodate the new input field, and the styling was adjusted accordingly.
-- **JavaScript Integration:** The `main.js` file was updated to read the value from the "Number of Pax" input field. Although the value is not yet used in the itinerary generation logic, it is captured and logged to the console.
+-   **Itinerary Generation:** Users can generate a travel itinerary by specifying a destination, travel dates, and the number of people.
+-   **Hotel Suggestions:** The application provides hotel suggestions based on the selected destination.
+-   **Day/Night Mode:** A day/night mode toggle allows users to switch between a light and dark theme.
 
-### Version 1.2: Visual Overhaul
+## Current Change: Add Day/Night Mode
 
-- **Modern & Appealing Design:** The application's look and feel have been significantly enhanced to be more modern and visually appealing.
-- **Vibrant Color Scheme:** A new color palette with gradients has been introduced for the header and buttons.
-- **Improved Typography:** Font sizes and weights have been adjusted for better readability and a clearer visual hierarchy.
-- **Hero Section with Background Image:** A striking hero image has been added to immediately capture the user's attention.
-- **Shadows and Depth:** Subtle box shadows have been applied to various elements to create a sense of depth.
-- **Hover Effects:** Interactive elements now have hover effects to provide visual feedback.
-- **Textured Background:** A subtle noise texture has been added to the background for a more premium feel.
+### Plan
 
-## Current Change: Visual Enhancements
+1.  **HTML:** Add a theme switcher toggle to the `index.html` file.
+2.  **CSS:**
+    -   Add CSS variables to `style.css` to define the color palette for both light and dark themes.
+    -   Add styles for the theme switcher toggle.
+    -   Use the CSS variables to style the application, ensuring that the colors adapt to the selected theme.
+3.  **JavaScript:**
+    -   Add an event listener to the theme switcher toggle to detect when the user changes the theme.
+    -   When the theme is changed, update the `data-theme` attribute on the `<html>` element to apply the new theme.
+    -   Store the selected theme in local storage so that it persists across sessions.
 
-**Objective:** To make the look and feel of the web page more appealing.
+### Implementation Details
 
-**Plan:**
-
-1.  **Update `style.css`:**
-    *   Introduce a new, vibrant color scheme with gradients.
-    *   Improve typography for better readability.
-    *   Add a hero section with a background image.
-    *   Use shadows to create depth and a layered look.
-    *   Implement hover effects for interactive elements.
-    *   Add a subtle texture to the background.
-
-2.  **Update `blueprint.md`:**
-    *   Document the visual enhancements in a new "Visual Overhaul" section.
+-   The theme switcher is a simple checkbox with a slider.
+-   CSS variables are used to define the colors for the light and dark themes. This makes it easy to update the color scheme in the future.
+-   JavaScript is used to handle the theme switching logic and to store the user's preferred theme in local storage.

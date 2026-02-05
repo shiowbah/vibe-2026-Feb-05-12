@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const output = document.getElementById('itinerary-output');
     const hotelOutput = document.getElementById('hotel-suggestion');
     const loading = document.getElementById('loading');
+    const themeSwitch = document.getElementById('checkbox');
 
     const destinations = {
         'paris': {
@@ -158,4 +159,24 @@ document.addEventListener('DOMContentLoaded', () => {
     genericActivities.morning = genericMorning;
     genericActivities.afternoon = genericAfternoon;
     genericActivities.evening = genericEvening;
+
+    // Theme switcher logic
+    themeSwitch.addEventListener('change', () => {
+        if (themeSwitch.checked) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            localStorage.setItem('theme', 'dark');
+        } else {
+            document.documentElement.setAttribute('data-theme', 'light');
+            localStorage.setItem('theme', 'light');
+        }
+    });
+
+    // Check for saved theme in local storage
+    const currentTheme = localStorage.getItem('theme');
+    if (currentTheme) {
+        document.documentElement.setAttribute('data-theme', currentTheme);
+        if (currentTheme === 'dark') {
+            themeSwitch.checked = true;
+        }
+    }
 });

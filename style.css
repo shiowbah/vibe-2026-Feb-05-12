@@ -1,20 +1,59 @@
 
+:root {
+    --background-color: #f8f9fa;
+    --text-color: #333;
+    --header-bg: linear-gradient(45deg, #0071c2, #00c2a8);
+    --hero-overlay: rgba(0, 0, 0, 0.5);
+    --form-bg: #ffffff;
+    --form-text-color: #555;
+    --form-border-color: #e0e0e0;
+    --button-bg: linear-gradient(45deg, #00c2a8, #0071c2);
+    --button-hover-bg: linear-gradient(45deg, #00a890, #005a9e);
+    --card-bg: #fff;
+    --card-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    --card-hover-shadow: 0 12px 30px rgba(0,0,0,0.12);
+    --heading-color: #1a2b48;
+    --primary-color: #0071c2;
+    --secondary-color: #00c2a8;
+}
+
+[data-theme="dark"] {
+    --background-color: #121212;
+    --text-color: #e0e0e0;
+    --header-bg: #1f1f1f;
+    --hero-overlay: rgba(0, 0, 0, 0.7);
+    --form-bg: #1f1f1f;
+    --form-text-color: #bbb;
+    --form-border-color: #444;
+    --button-bg: linear-gradient(45deg, #00c2a8, #0071c2);
+    --button-hover-bg: linear-gradient(45deg, #00a890, #005a9e);
+    --card-bg: #1f1f1f;
+    --card-shadow: 0 8px 25px rgba(0,0,0,0.2);
+    --card-hover-shadow: 0 12px 30px rgba(0,0,0,0.3);
+    --heading-color: #e0e0e0;
+    --primary-color: #00a890;
+    --secondary-color: #0071c2;
+}
+
+
 body {
     font-family: 'Poppins', sans-serif;
-    background-color: #f8f9fa;
-    color: #333;
+    background-color: var(--background-color);
+    color: var(--text-color);
     margin: 0;
     background-image: url('https://www.transparenttextures.com/patterns/subtle-noise.png');
+    transition: background-color 0.3s, color 0.3s;
 }
 
 .main-header {
-    background: linear-gradient(45deg, #0071c2, #00c2a8);
+    background: var(--header-bg);
     color: white;
     padding: 20px 40px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: background 0.3s;
 }
 
 .logo {
@@ -37,7 +76,8 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
+    background: var(--hero-overlay);
+    transition: background 0.3s;
 }
 
 .hero-content {
@@ -63,7 +103,7 @@ body {
 
 .search-form-container form {
     display: flex;
-    background-color: #ffffff;
+    background-color: var(--form-bg);
     border-radius: 12px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
     overflow: hidden;
@@ -71,12 +111,14 @@ body {
     max-width: 900px;
     margin: 0 auto;
     align-items: flex-end;
+    transition: background-color 0.3s;
 }
 
 .form-group {
     padding: 25px;
     flex-grow: 1;
-    border-right: 1px solid #e0e0e0;
+    border-right: 1px solid var(--form-border-color);
+    transition: border-color 0.3s;
 }
 
 .form-group:last-of-type {
@@ -87,8 +129,9 @@ body {
     display: block;
     margin-bottom: 10px;
     font-weight: 600;
-    color: #555;
+    color: var(--form-text-color);
     font-size: 0.9em;
+    transition: color 0.3s;
 }
 
 .form-group input {
@@ -97,6 +140,9 @@ body {
     border: 1px solid #ccc;
     border-radius: 6px;
     font-size: 1em;
+    background-color: var(--form-bg);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
 }
 
 .destination-group {
@@ -117,7 +163,7 @@ body {
 }
 
 .search-form-container button {
-    background: linear-gradient(45deg, #00c2a8, #0071c2);
+    background: var(--button-bg);
     color: white;
     border: none;
     padding: 25px 35px;
@@ -129,7 +175,7 @@ body {
 }
 
 .search-form-container button:hover {
-    background: linear-gradient(45deg, #00a890, #005a9e);
+    background: var(--button-hover-bg);
 }
 
 .results-container {
@@ -140,9 +186,10 @@ body {
 
 #hotel-suggestion h2, #itinerary-output h2 {
     font-size: 2.2em;
-    color: #1a2b48;
+    color: var(--heading-color);
     margin-bottom: 25px;
     text-align: center;
+    transition: color 0.3s;
 }
 
 .hotel-list {
@@ -153,23 +200,24 @@ body {
 }
 
 .hotel-card, .itinerary-day-card {
-    background: #fff;
+    background: var(--card-bg);
     border: none;
     border-radius: 12px;
     padding: 25px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: var(--card-shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s;
 }
 
 .hotel-card:hover, .itinerary-day-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+    box-shadow: var(--card-hover-shadow);
 }
 
 .hotel-card h3 {
     font-size: 1.5em;
     margin-top: 0;
-    color: #0071c2;
+    color: var(--primary-color);
+    transition: color 0.3s;
 }
 
 .hotel-card p {
@@ -179,11 +227,12 @@ body {
 
 .itinerary-day-card h3 {
     font-size: 1.8em;
-    color: #1a2b48;
+    color: var(--heading-color);
     margin-top: 0;
     margin-bottom: 20px;
-    border-bottom: 2px solid #00c2a8;
+    border-bottom: 2px solid var(--secondary-color);
     padding-bottom: 10px;
+    transition: color 0.3s, border-color 0.3s;
 }
 
 .itinerary-day-card ul {
@@ -198,22 +247,78 @@ body {
 }
 
 .itinerary-day-card b {
-    color: #0071c2;
+    color: var(--primary-color);
     font-weight: 600;
+    transition: color 0.3s;
 }
 
 .loading-spinner {
     border: 6px solid #f3f3f3;
-    border-top: 6px solid #0071c2;
+    border-top: 6px solid var(--primary-color);
     border-radius: 50%;
     width: 50px;
     height: 50px;
     animation: spin 1s linear infinite;
     margin: 50px auto;
     display: none;
+    transition: border-top-color 0.3s;
 }
 
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
+}
+
+.theme-switch-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.theme-switch {
+    display: inline-block;
+    height: 34px;
+    position: relative;
+    width: 60px;
+}
+
+.theme-switch input {
+    display:none;
+}
+
+.slider {
+    background-color: #ccc;
+    bottom: 0;
+    cursor: pointer;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: .4s;
+}
+
+.slider:before {
+    background-color: #fff;
+    bottom: 4px;
+    content: "";
+    height: 26px;
+    left: 4px;
+    position: absolute;
+    transition: .4s;
+    width: 26px;
+}
+
+input:checked + .slider {
+    background-color: #2196F3;
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
 }
