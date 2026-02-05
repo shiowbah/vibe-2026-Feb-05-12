@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             hotelOutput.innerHTML = `<h2>Hotel Suggestions</h2><div class="hotel-list">${hotelList.map(hotel => `
                 <div class="hotel-card">
-                    <h3>${hotel.name} (${hotel.type})</h3>
+                    <h3><b>${hotel.name}</b> (${hotel.type})</h3>
                     <p>${hotel.description}</p>
                 </div>
             `).join('')}</div>`;
