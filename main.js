@@ -62,6 +62,18 @@ document.addEventListener('DOMContentLoaded', () => {
         return newArray;
     };
 
+    // Helper function to convert priceRange symbol to a numerical maximum
+    const getPriceRangeMax = (priceRangeSymbol) => {
+        switch (priceRangeSymbol) {
+            case '$': return 100;
+            case '$$': return 200;
+            case '$$$': return 300;
+            case '$$$$': return 500;
+            case '$$$$$': return 1000; // Assuming a high max for very luxury
+            default: return Infinity; // No limit
+        }
+    };
+
     form.addEventListener('submit', (event) => {
         event.preventDefault();
         output.innerHTML = '';
@@ -75,6 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const startDate = new Date(document.getElementById('start-date').value);
             const endDate = new Date(document.getElementById('end-date').value);
             const pax = document.getElementById('pax').value;
+            const maxBudget = parseInt(document.getElementById('budget').value) || Infinity; // Get budget, default to Infinity if not set
 
 
             if (!destinationInput || !startDate || !endDate || endDate < startDate) {
@@ -115,8 +128,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     });
                 }
             }
+
+            // Filter hotels based on budget
+            const filteredHotels = hotelList.filter(hotel => {
+                const hotelMaxPrice = getPriceRangeMax(hotel.priceRange);
+                return hotelMaxPrice <= maxBudget;
+            });
             
-            hotelOutput.innerHTML = `<h2>Hotel Suggestions</h2><div class="hotel-list">${hotelList.slice(0, 3).map(hotel => `
+            hotelOutput.innerHTML = `<h2>Hotel Suggestions</h2><div class="hotel-list">${filteredHotels.slice(0, 3).map(hotel => `
                 <div class="hotel-card">
                     <h3><a href="${hotel.url}" target="_blank"><b>${hotel.name}</b></a> (${hotel.type})</h3>
                     <p>Rating: ${hotel.rating} / 5</p>

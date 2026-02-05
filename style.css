@@ -151,10 +151,14 @@ body {
 }
 
 .date-group {
-    flex-basis: 40%;
+    flex-basis: 30%; /* Adjusted to make space for budget */
 }
 
 .pax-group {
+    flex-basis: 15%;
+}
+
+.budget-group {
     flex-basis: 15%;
 }
 
