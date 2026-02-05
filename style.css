@@ -185,7 +185,7 @@ body {
     padding: 0 20px;
 }
 
-#hotel-suggestion h2, #itinerary-output h2 {
+#hotel-suggestion h2, #airline-suggestion h2, #itinerary-output h2 {
     font-size: 2.2em;
     color: var(--heading-color);
     margin-bottom: 25px;
@@ -207,6 +207,7 @@ body {
     padding: 25px;
     box-shadow: var(--card-shadow);
     transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s;
+    text-align: center; /* Center-align content within the cards */
 }
 
 .hotel-card:hover, .itinerary-day-card:hover {
@@ -222,7 +223,7 @@ body {
 }
 
 .hotel-card p {
-    font-size: 1em;
+    font-size: 1em; /* Explicitly set for consistency */
     line-height: 1.7;
 }
 
