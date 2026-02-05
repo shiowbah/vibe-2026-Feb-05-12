@@ -241,7 +241,7 @@ if (feedbackForm) {
         feedbackStatus.style.color = 'var(--text-color)';
         feedbackStatus.textContent = 'Sending your feedback...';
 
-        const formData = new new FormData(feedbackForm);
+        const formData = new FormData(feedbackForm);
 
         try {
             const response = await fetch(feedbackForm.action, {
