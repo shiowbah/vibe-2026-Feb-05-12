@@ -193,7 +193,7 @@ body {
     transition: color 0.3s;
 }
 
-.hotel-list {
+.hotel-list, .airline-list {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 30px;

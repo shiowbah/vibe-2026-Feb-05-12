@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('itinerary-form');
     const output = document.getElementById('itinerary-output');
     const hotelOutput = document.getElementById('hotel-suggestion');
+    const airlineOutput = document.getElementById('airline-suggestion');
     const loading = document.getElementById('loading');
     const themeSwitch = document.getElementById('checkbox');
 
@@ -14,6 +15,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 { name: 'Hôtel de Crillon', type: 'Luxury', description: 'A historic palace hotel on Place de la Concorde with a refined, timeless Parisian experience.' },
                 { name: 'Hotel Malte - Astotel', type: 'Mid-Range', description: 'A charming and stylish hotel in the heart of the 2nd arrondissement.' },
                 { name: 'Generator Paris', type: 'Budget', description: 'A trendy hostel with a rooftop terrace offering stunning views of Montmartre.' },
+            ],
+            airlines: [
+                { name: 'Air France', class: 'Economy', price: '$$', description: 'National carrier of France.' },
+                { name: 'Delta Airlines', class: 'Economy', price: '$$', description: 'Major US airline with direct flights.' },
+                { name: 'British Airways', class: 'Business', price: '$$$', description: 'Premium service to Paris.' },
             ]
         },
         'tokyo': {
@@ -23,6 +29,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 { name: 'Aman Tokyo', type: 'Luxury', description: 'A serene and luxurious sanctuary with a stunning design, located near the Imperial Palace.' },
                 { name: 'Shibuya Granbell Hotel', type: 'Mid-Range', description: 'A stylish and modern hotel in the heart of Shibuya, perfect for exploring the vibrant district.' },
                 { name: 'Book And Bed Tokyo', type: 'Budget', description: 'A unique hostel where you can sleep in a bookshelf, offering a cozy and memorable experience.' },
+            ],
+            airlines: [
+                { name: 'Japan Airlines (JAL)', class: 'Economy', price: '$$', description: 'National carrier of Japan.' },
+                { name: 'All Nippon Airways (ANA)', class: 'Economy', price: '$$', description: 'Another major Japanese airline.' },
+                { name: 'United Airlines', class: 'Economy', price: '$$', description: 'Major US airline with direct flights.' },
             ]
         }
     };
@@ -33,6 +44,12 @@ document.addEventListener('DOMContentLoaded', () => {
         { name: 'Luxury Hotel Option', type: 'Luxury', description: 'For a premium experience, consider a 5-star hotel in the city center with top-tier amenities like a spa, fine dining, and concierge services.' },
         { name: 'Mid-Range Hotel Option', type: 'Mid-Range', description: 'Look for a 3 to 4-star hotel in a well-connected neighborhood. These often provide a great balance of comfort, value, and convenience.' },
         { name: 'Budget-Friendly Option', type: 'Budget', description: 'For those traveling on a tighter budget, consider modern hostels, boutique guesthouses, or well-reviewed budget hotels located just outside the main tourist areas.' },
+    ];
+
+    const genericAirlines = [
+        { name: 'Global Airways', class: 'Economy', price: '$$', description: 'Offers competitive prices with a wide network.' },
+        { name: 'SkyLink Express', class: 'Business', price: '$$$', description: 'Premium services for business travelers.' },
+        { name: 'Budget Fly', class: 'Economy', price: '$', description: 'No-frills, affordable flights.' },
     ];
 
     const shuffle = (array) => {
@@ -50,6 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
         event.preventDefault();
         output.innerHTML = '';
         hotelOutput.innerHTML = '';
+        airlineOutput.innerHTML = ''; // Clear airline output
         loading.style.display = 'block';
 
         setTimeout(() => {
@@ -74,6 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
             let plan = [];
             const destinationData = destinations[destinationKey];
             let hotelList = genericHotels;
+            let airlineList = genericAirlines; // Initialize airlineList
 
             if (destinationData) {
                 const specificItinerary = destinationData.itinerary;
@@ -81,6 +100,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     plan.push(specificItinerary[i % specificItinerary.length]);
                 }
                 hotelList = destinationData.hotels;
+                if (destinationData.airlines) {
+                    airlineList = destinationData.airlines; // Use specific airlines if available
+                }
             } else { 
                 const shuffledMornings = shuffle(genericActivities.morning);
                 const shuffledAfternoons = shuffle(genericActivities.afternoon);
@@ -95,10 +117,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
             
-            hotelOutput.innerHTML = `<h2>Hotel Suggestions</h2><div class="hotel-list">${hotelList.map(hotel => `
+            hotelOutput.innerHTML = `<h2>Hotel Suggestions</h2><div class="hotel-list">${hotelList.slice(0, 3).map(hotel => `
                 <div class="hotel-card">
                     <h3><b>${hotel.name}</b> (${hotel.type})</h3>
                     <p>${hotel.description}</p>
+                </div>
+            `).join('')}</div>`;
+
+            airlineOutput.innerHTML = `<h2>Airline Suggestions</h2><div class="airline-list">${airlineList.slice(0, 3).map(airline => `
+                <div class="hotel-card"> <!-- Reusing hotel-card style for consistency -->
+                    <h3><b>${airline.name}</b> (${airline.class})</h3>
+                    <p>Price: ${airline.price}</p>
+                    <p>${airline.description}</p>
                 </div>
             `).join('')}</div>`;
 
