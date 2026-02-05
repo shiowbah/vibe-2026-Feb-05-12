@@ -1,14 +1,30 @@
-<!doctype html>
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hello World</title>
-  <link href='/style.css' rel='stylesheet'>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Itinerary Planner</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <h1>Hello, world!</h1>
-  <button onclick="console.log('hello');">Press me</button>
-  <script defer type="text/javascript" src="/main.js"></script>
+    <header>
+        <h1>Itinerary Planner</h1>
+    </header>
+    <main>
+        <form id="itinerary-form">
+            <input type="text" id="destination" placeholder="Enter destination (e.g., Paris, Tokyo)" required>
+            <input type="number" id="duration" placeholder="Enter duration in days" min="1" max="10" required>
+            <button type="submit">Generate Itinerary</button>
+        </form>
+        <div class="loading-spinner" id="loading"></div>
+        <section id="itinerary-output">
+            <!-- Itinerary will be displayed here -->
+        </section>
+    </main>
+    <script src="main.js"></script>
 </body>
 </html>
